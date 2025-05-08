@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AlpenModding</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #FFD700;
+    }
+
+    nav {
+      background-color: #111;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav button {
+      background-color: #FFD700;
+      color: #000;
+      border: none;
+      padding: 15px 30px;
+      margin: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      transition: background-color 0.3s, transform 0.3s ease;
+    }
+
+    nav button:hover {
+      background-color: #ffcc00;
+      transform: scale(1.1);
+    }
+
+    section {
+      display: none;
+      padding: 40px 20px;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 120px 20px;
+      background: url('https://via.placeholder.com/1500x800/000000/FFFFFF?text=Modding+Background') center/cover no-repeat;
+      background-size: cover;
+      position: relative;
+      overflow: hidden;
+      color: white;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .hero span {
+      color: #FFD700;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      animation: fadeIn 3s ease-in-out;
+      margin-top: 20px;
+    }
+
+    .hero-content {
+      opacity: 0;
+      animation: slideUp 2s forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      0% { transform: translateY(50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .gallery img {
+      width: 300px;
+      height: auto;
+      border: 2px solid #FFD700;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #FFD700;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li::before {
+      content: "✔️ ";
+    }
+
+    footer {
+      background-color: #111;
+      color: #FFD700;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .team-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .team-member {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 12px;
+      width: 250px;
+      box-shadow: 0 0 15px #FFD700;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-member:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700;
+    }
+
+    .team-member img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 4px solid #FFD700;
+      transition: transform 0.3s ease;
+    }
+
+    .team-member img:hover {
+      transform: scale(1.1);
+    }
+
+    .team-member h3 {
+      margin: 0;
+      color: #FFD700;
+      font-size: 1.5rem;
+      font-family: 'Arial', sans-serif;
+      transition: color 0.3s ease;
+    }
+
+    .team-member h3:hover {
+      color: #fff;
+    }
+
+    .team-member p {
+      margin: 5px 0 0;
+      color: #ccc;
+      font-size: 1rem;
+    }
+
+    .team-logo {
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    /* Hover Effect for Team Logo */
+    .team-logo:hover {
+      transform: rotate(360deg);
+      filter: brightness(1.2);
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <button onclick="showSection('home')">🏠 Home</button>
+    <button onclick="showSection('gallery')">🖼 Galerie</button>
+    <button onclick="showSection('rules')">📜 Regeln</button>
+    <button onclick="showSection('team')">👥 Team</button>
+  </nav>
+
+  <!-- HOME -->
+<section id="home" class="active">
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Willkommen bei <span>AlpenModding</span></h1>
+      <p>Erlebe einzigartige Mods für LS22 & LS25 – mit Herz, Technik und Leidenschaft.</p>
+      <p>Entdecke beeindruckende Projekte in unserer Galerie oder informiere dich in unserem Regelwerk für ein faires Miteinander.</p>
+
+      <a href="https://discord.gg/HDRYRAcMjV" target="_blank" style="
+        display: inline-block;
+        margin-top: 30px;
+        padding: 15px 30px;
+        background-color: #FFD700;
+        color: #000;
+        font-weight: bold;
+        font-size: 1.1rem;
+        text-decoration: none;
+        border-radius: 12px;
+        transition: background-color 0.3s, transform 0.3s;
+      ">
+        🌐 Jetzt unserem Discord beitreten
+      </a>
+
+      <p style="margin-top: 15px; font-size: 1.2rem; color: #FFD700;">
+        👥 Aktuell über <strong>750</strong> Mitglieder!
+      </p>
+    </div>
+  </div>
+</section>
+  <!-- GALERIE -->
+<section id="gallery">
+  <h2>📸 Galerie</h2>
+  <style>
+    /* Galerie Container */
+    #gallery {
+      background-color: #111;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    h2 {
+      color: #FFD700;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      font-family: 'Arial', sans-serif;
+      font-weight: 700;
+    }
+
+    .gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 30px;
+}
+
+    /* Galerie Item Box */
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    /* Bilder Styling */
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    /* Hover Effekt auf Galerie Item */
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #FFD700, 0 0 35px #FFD700;
+    }
+
+    /* Hover Effekt auf Bilder */
+    .gallery-item img:hover {
+      transform: scale(1.1);
+      filter: brightness(1.1);
+    }
+  </style>
+
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="D:\Pictures\Screenshots\Screenshot (255).png" alt="Traktor auf dem Feld">
+    </div>
+    <div class="gallery-item">
+      <img src="D:\Pictures\Screenshots\Screenshot (144).png" alt="Landwirtschaft bei Sonnenuntergang">
+    </div>
+    <div class="gallery-item">
+      <img src="C:\Screenshots\Screenshot (335).png" alt="Modding Beispiel LS22">
+    </div>
+  </div>
+  
+</section>
+
+
+
+  <!-- REGELWERK -->
+  <section id="rules">
+    <h2>📜 AlpenModding – Discord Regeln</h2>
+    <h3>§1 – Benutzernamen, Avatare & Profile</h3>
+    <p>Benutzernamen, Nicknamen und Avatare dürfen keine beleidigenden, geschützten oder anderweitig verbotenen Inhalte enthalten. Das gilt ebenso für Benutzerbeschreibungen, Statusmeldungen sowie Sprach- und Textkanäle.</p>
+    <p>Verboten sind insbesondere:</p>
+    <ul>
+      <li>Pornografische, rassistische, beleidigende oder diskriminierende Inhalte.</li>
+      <li>Namen oder Bilder mit extremistischen, politischen oder anderweitig problematischen Botschaften.</li>
+    </ul>
+
+    <h3>§2 – Verhalten & Kommunikation</h3>
+    <h4>§2.1 Chatverhalten</h4>
+    <p>Jeder Benutzer hat sich respektvoll und freundlich zu verhalten. Verbale Angriffe jeglicher Art sind untersagt. Dazu zählen:</p>
+    <ul>
+      <li>Beleidigungen, Mobbing und Provokationen</li>
+      <li>Sexismus, sexuelle Belästigung und Hassrede</li>
+      <li>Rassismus, Homophobie oder jegliche Form der Diskriminierung</li>
+    </ul>
+    <p>Ebenso untersagt sind:</p>
+    <ul>
+      <li>Spam, übermäßiges Pingen oder Ghost-Pings</li>
+      <li>Capslock (BEISPIEL) und Zalgo-Text (z. B. Ȅ̴̂x̴̛̔a̴̎̉m̷̀̐p̵̽̈́l̵̽̍e̷̒)</li>
+    </ul>
+
+    <h4>§2.2 Verhalten in Sprachkanälen</h4>
+    <p>Das Aufnehmen von Gesprächen ist nur erlaubt, wenn alle Anwesenden ausdrücklich zustimmen. Ohne Einwilligung ist jede Form von Mitschnitt verboten. Gleiches gilt für die Nutzung von Stimmverzerrern, Soundboards oder ähnlichen Effekten.</p>
+
+    <h4>§2.3 Nutzung der Kanäle</h4>
+    <p>Jeder Kanal hat eine klare Funktion und soll ausschließlich für den vorgesehenen Zweck genutzt werden.</p>
+    <ul>
+      <li>Private Probleme gehören nicht in öffentliche Chats. Klärt diese bitte privat.</li>
+      <li>Serverbezogene Probleme können über das Ticketsystem gemeldet werden.</li>
+    </ul>
+
+    <h3>§3 – Moderation & Strafen</h3>
+    <h4>§3.1 Weisungsrecht</h4>
+    <p>Administratoren, Moderatoren und andere befugte Mitglieder der Serververwaltung haben volles Weisungsrecht und die Deutungshoheit über die Regeln.</p>
+    <p>Das Ignorieren oder Verweigern einer Anweisung kann bestraft werden.</p>
+
+    <h4>§3.2 Strafen</h4>
+    <p>Strafen wie Timeouts, Mutes, Kicks oder Bans werden von der Serververwaltung nach eigenem Ermessen verhängt.</p>
+    <p>Ein Einspruch oder eine Kürzung einer Strafe kann über das Helpdesk beantragt werden.</p>
+
+    <h3>§4 – Werbung & Datenschutz</h3>
+    <h4>§4.1 Werbung</h4>
+    <p>Jegliche Werbung, seien es Links oder Eigenwerbung, ist ohne Zustimmung der Moderation nicht gestattet.</p>
+
+    <h4>§4.2 Datenschutz</h4>
+    <p>Der Austausch von persönlichen Daten sollte mit Bedacht erfolgen. Der Server haftet nicht für die unbefugte Nutzung von Daten außerhalb der Plattform.</p>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+  <h2>👥 Unser Team</h2>
+  <div class="team-container">
+    <!-- Owner -->
+    <div class="team-member">
+      <img src="C:\Screenshots\Screenshot 2024-06-09 194327.png" alt="Fabian">
+      <h3>Fabian</h3>
+      <p>👑 Owner</p>
+    </div>
+    <div class="team-member">
+      <img src="C:\Screenshots\Screenshot 2024-06-09 194327.png" alt="Maxi">
+      <h3>Maxi</h3>
+      <p>👑 Owner</p>
+    </div>
+
+    <!-- Admins -->
+    <div class="team-member">
+      <img src="C:\Screenshots\Screenshot 2024-06-09 194327.png" alt="Mathias">
+      <h3>Mathias</h3>
+      <p>🛡️ Admin</p>
+    </div>
+    <div class="team-member">
+      <img src="C:\Screenshots\Screenshot 2024-06-09 194327.png" alt="Lorenz">
+      <h3>Lorenz</h3>
+      <p>🛡️ Admin</p>
+    </div>
+
+    <!-- Mod -->
+    <div class="team-member">
+      <img src="C:\Screenshots\Screenshot 2024-06-09 194327.png" alt="Lukas">
+      <h3>Lukas</h3>
+      <p>🔧 Moderator</p>
+    </div>
+  </div>
+</section>
+
+
+  <footer>
+    <p>&copy; 2025 AlpenModding – Alle Rechte vorbehalten</p>
+  </footer>
+
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(sectionId).classList.add('active');
+    }
+  </script>
+</body>
+</html>
